@@ -1,4 +1,5 @@
         <p class="text-xs-center">Войдите для работы</p>
+        <div class="alert alert-{{message.type}}"  *ngIf="message.text">{{ message.text }}</div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="form-group"
           [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
@@ -35,8 +36,8 @@ Input correct email.
               <span *ngIf="form.get('password')['errors']['required']">Fields is required</span>
               <span *ngIf="form.get('password')['errors']['minlength']">
               Password must be longer than
-                {{form.get('password')['errors']['minlength']['requiredLength']}}
-                characters. Now it contains {{form.get('password')['errors']['minlength']['actualLength']}}
+              {{form.get('password')['errors']['minlength']['requiredLength'] }}
+                characters. Now it contain  {{form.get('password')['errors']['minlength']['actualLength' ]}}
               </span>
             </span>
           </div>

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../shared/services/user.service';
+import {User} from '../../shared/models/user.model';
+import {Message} from '../../shared/models/message.model';
 
 @Component({
   selector: 'ha-login',
@@ -8,18 +11,40 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  message: Message;
 
-  constructor() { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
+    this.message = new Message('danger', '');
     this.form = new FormGroup({
-      'email' : new FormControl(null, [Validators.required, Validators.email]),
-      'password' : new FormControl(null, [Validators.required, Validators.minLength(6)])
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
   onSubmit() {
-    console.log(this.form);
+    const formData = this.form.value;
+    // console.log(this.form);
+    this.userService.getUserByEmail(formData.email).subscribe((user: User) => {
+      if (user) {
+        if (user.password === formData.password) {
+        //
+        } else {
+          this.showMessage('wrong password');
+        }
+      } else {
+        this.showMessage('wrong user');
+      }
+    });
+  }
+
+  private showMessage(text: string, type: string = 'danger') {
+    this.message = new Message(type, text);
+    window.setTimeout(() => {
+      this.message.text = '';
+    }, 3000);
   }
 
 }
