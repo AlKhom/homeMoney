@@ -34,7 +34,7 @@ Input correct email.
              >
             <span class="form-help-text" *ngIf="form.get('password').invalid&& form.get('password').touched">
               <span *ngIf="form.get('password')['errors']['required']">Fields is required</span>
-              <span *ngIf="form.get('password')['errors']['minlength']">
+              <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
               Password must be longer than
               {{form.get('password')['errors']['minlength']['requiredLength'] }}
                 characters. Now it contain  {{form.get('password')['errors']['minlength']['actualLength' ]}}

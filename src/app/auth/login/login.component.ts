@@ -4,7 +4,7 @@ import {UserService} from '../../shared/services/user.service';
 import {User} from '../../shared/models/user.model';
 import {Message} from '../../shared/models/message.model';
 import {Auth} from '../../shared/services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'ha-login',
@@ -18,12 +18,24 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private auth: Auth,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
     this.message = new Message('danger', '');
+
+    this.route.queryParams.
+    subscribe((params: Params) => {
+      if (params['nowCanLogin']) {
+        this.showMessage({
+          type: 'success',
+          text: 'Now you can login'
+        });
+      }
+    });
+
     this.form = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -41,16 +53,20 @@ export class LoginComponent implements OnInit {
           // this.router.navigate(['']);
         //
         } else {
-          this.showMessage('wrong password');
+          this.showMessage({
+            type: 'danger',
+            text: 'wrong password'});
         }
       } else {
-        this.showMessage('wrong user');
+        this.showMessage({
+          type: 'danger',
+          text: 'wrong user'});
       }
     });
   }
 
-  private showMessage(text: string, type: string = 'danger') {
-    this.message = new Message(type, text);
+  private showMessage(message: Message) {
+    this.message = message;
     window.setTimeout(() => {
       this.message.text = '';
     }, 3000);
