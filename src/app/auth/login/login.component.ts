@@ -15,19 +15,16 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message: Message;
 
-  constructor(
-    private userService: UserService,
-    private auth: Auth,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private userService: UserService,
+              private auth: Auth,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.message = new Message('danger', '');
 
-    this.route.queryParams.
-    subscribe((params: Params) => {
+    this.route.queryParams.subscribe((params: Params) => {
       if (params['nowCanLogin']) {
         this.showMessage({
           type: 'success',
@@ -50,17 +47,19 @@ export class LoginComponent implements OnInit {
         if (user.password === formData.password) {
           this.auth.login();
           window.localStorage.setItem('user', JSON.stringify(user));
-          // this.router.navigate(['']);
-        //
+          this.router.navigate(['/system', 'bill']);
+          //
         } else {
           this.showMessage({
             type: 'danger',
-            text: 'wrong password'});
+            text: 'wrong password'
+          });
         }
       } else {
         this.showMessage({
           type: 'danger',
-          text: 'wrong user'});
+          text: 'wrong user'
+        });
       }
     });
   }
