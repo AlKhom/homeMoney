@@ -9,10 +9,13 @@ import {RecordsPageComponent} from './records-page/records-page.component';
 import {SystemComponent} from './system.component';
 import {SystemRouting} from './system-routing.module';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { OpenDirectiveDirective } from './shared/directives/open-directive.directive';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, SystemRouting],
-  declarations: [BillPageComponent, HistoryPageComponent, PlanningPageComponent, RecordsPageComponent, SystemComponent, SidebarComponent]
+  declarations: [BillPageComponent, HistoryPageComponent,
+    PlanningPageComponent, RecordsPageComponent, SystemComponent, SidebarComponent, OpenDirectiveDirective, HeaderComponent]
 })
 
 export class SystemModule {
