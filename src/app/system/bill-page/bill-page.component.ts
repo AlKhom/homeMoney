@@ -4,6 +4,7 @@ import {Bill} from '../shared/models/bill';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'ha-bill-page',
@@ -12,20 +13,40 @@ import 'rxjs/add/observable/combineLatest';
 })
 export class BillPageComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
+  subscription1: Subscription;
+  subscription2: Subscription;
+  currency;
+  bill: Bill;
+  isLoaded = false;
 
   constructor(private billService: BillService) {
   }
 
   ngOnInit() {
-    this.subscription = Observable.combineLatest(
+    this.subscription1 = Observable.combineLatest(
       this.billService.getBill(),
       this.billService.getCurrencyRate())
-      .subscribe((data: [Bill, any]) => console.log(data));
+      .subscribe((data: [Bill, any]) => {
+        this.isLoaded = true;
+        this.currency = data[1];
+        this.bill = data[0];
+        console.log(data);
+      });
+  }
+
+  onRefresh() {
+    this.isLoaded = false;
+   this.subscription2 =  this.billService.getCurrencyRate()
+     .delay(1000)
+     .subscribe((currency) => {
+      this.currency = currency;
+      this.isLoaded = true;
+    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription1.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }
 
