@@ -30,7 +30,6 @@ export class BillPageComponent implements OnInit, OnDestroy {
         this.isLoaded = true;
         this.currency = data[1];
         this.bill = data[0];
-        console.log(data);
       });
   }
 

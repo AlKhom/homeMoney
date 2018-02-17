@@ -14,6 +14,7 @@ import {HeaderComponent} from './shared/components/header/header.component';
 import {BillCardComponent} from './bill-page/bill-card/bill-card.component';
 import {BillCurrencyComponent} from './bill-page/bill-currency/bill-currency.component';
 import {BillService} from './shared/services/bill.service';
+import {PipeMoment} from './shared/pipes/pipe.moment';
 
 @NgModule({
   imports: [CommonModule, SharedModule, SystemRouting],
@@ -21,7 +22,7 @@ import {BillService} from './shared/services/bill.service';
     PlanningPageComponent,
     RecordsPageComponent,
     SystemComponent, SidebarComponent,
-    OpenDirectiveDirective, HeaderComponent, BillCardComponent, BillCurrencyComponent],
+    OpenDirectiveDirective, HeaderComponent, BillCardComponent, BillCurrencyComponent, PipeMoment],
   providers: [BillService]
 })
 

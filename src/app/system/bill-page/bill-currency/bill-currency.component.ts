@@ -12,7 +12,6 @@ export class BillCurrencyComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.currency);
   }
 
 }
