@@ -15,6 +15,9 @@ import {BillCardComponent} from './bill-page/bill-card/bill-card.component';
 import {BillCurrencyComponent} from './bill-page/bill-currency/bill-currency.component';
 import {BillService} from './shared/services/bill.service';
 import {PipeMoment} from './shared/pipes/pipe.moment';
+import {AddEventComponent} from './records-page/add-event/add-event.component';
+import {AddCategoryComponent} from './records-page/add-category/add-category.component';
+import {EditCategoryComponent} from './records-page/edit-category/edit-category.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, SystemRouting],
@@ -22,7 +25,9 @@ import {PipeMoment} from './shared/pipes/pipe.moment';
     PlanningPageComponent,
     RecordsPageComponent,
     SystemComponent, SidebarComponent,
-    OpenDirectiveDirective, HeaderComponent, BillCardComponent, BillCurrencyComponent, PipeMoment],
+    OpenDirectiveDirective, HeaderComponent, BillCardComponent,
+    BillCurrencyComponent, PipeMoment, AddEventComponent,
+    AddCategoryComponent, EditCategoryComponent],
   providers: [BillService]
 })
 
