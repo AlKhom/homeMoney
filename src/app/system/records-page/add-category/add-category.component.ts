@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {CategoryService} from '../../shared/services/category.service';
+import {CategoryModel} from '../../shared/models/category.model';
 
 @Component({
   selector: 'ha-add-category',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCategoryComponent implements OnInit {
 
-  constructor() { }
+  @Output() categoryAdd = new EventEmitter();
+
+  constructor(private categoryService: CategoryService) {
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    const {name, capacity} = form.value;
+    const category = new CategoryModel(name, capacity);
+
+    this.categoryService.addCategory(category).subscribe(
+      data => this.categoryAdd.emit(data)
+    );
   }
 
 }

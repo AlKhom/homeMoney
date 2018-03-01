@@ -18,6 +18,7 @@ import {PipeMoment} from './shared/pipes/pipe.moment';
 import {AddEventComponent} from './records-page/add-event/add-event.component';
 import {AddCategoryComponent} from './records-page/add-category/add-category.component';
 import {EditCategoryComponent} from './records-page/edit-category/edit-category.component';
+import {CategoryService} from './shared/services/category.service';
 
 @NgModule({
   imports: [CommonModule, SharedModule, SystemRouting],
@@ -28,7 +29,7 @@ import {EditCategoryComponent} from './records-page/edit-category/edit-category.
     OpenDirectiveDirective, HeaderComponent, BillCardComponent,
     BillCurrencyComponent, PipeMoment, AddEventComponent,
     AddCategoryComponent, EditCategoryComponent],
-  providers: [BillService]
+  providers: [BillService, CategoryService]
 })
 
 export class SystemModule {

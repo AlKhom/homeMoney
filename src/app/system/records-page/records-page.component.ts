@@ -11,5 +11,7 @@ export class RecordsPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  newAddedCategory(event) {
+    console.log(event);
+  }
 }
