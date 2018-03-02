@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CategoryService} from '../shared/services/category.service';
+import {CategoryModel} from '../shared/models/category.model';
 
 @Component({
   selector: 'ha-records-page',
@@ -7,11 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecordsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) {
+  }
+
+  categories: CategoryModel[] = [];
+  isLoaded = false;
 
   ngOnInit() {
+    this.categoryService.getCategory().subscribe(
+      data => {
+        this.categories = data;
+        this.isLoaded = true;
+      }
+    );
   }
+
   newAddedCategory(event) {
-    console.log(event);
+    this.categories.push(event);
   }
+
 }

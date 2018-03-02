@@ -3,8 +3,12 @@
       Страница записей <span class="sparkline bar"></span>
     </h3>
   </div>
+<section *ngIf="!isLoaded">
+  Loading...
+</section>
 
-  <section class="section">
+
+  <section  *ngIf="isLoaded" class="section">
     <div class="row">
       <div class="col-md-6">
      <ha-add-event></ha-add-event>
@@ -15,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <ha-edit-category></ha-edit-category>
+        <ha-edit-category [categories]="categories"></ha-edit-category>
     </div>
     </div>
   </section>

@@ -44,6 +44,16 @@
       "id": 3,
       "name": "Машина",
       "capacity": 7000
+    },
+    {
+      "name": "12",
+      "capacity": 32,
+      "id": 4
+    },
+    {
+      "name": "ddsa",
+      "capacity": 122,
+      "id": 5
     }
   ],
   "events": [

@@ -14,4 +14,8 @@ export class CategoryService extends BaseApi {
     console.log(category);
     return this.post('categories', category);
   }
+
+  getCategory(): Observable<any> {
+    return this.get('categories');
+  }
 }
