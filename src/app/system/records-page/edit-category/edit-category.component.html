@@ -4,6 +4,9 @@
       <h3 class="title">Edit category</h3>
     </div>
   </div>
+  <div class="alert alert-{{message.type}}"
+       *ngIf="message.text"
+  >{{ message.text }}</div>
   <div class="card-block">
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
@@ -17,7 +20,7 @@
         >
           <option *ngFor="let c of categories"
             value="{{c.id}}"
-          >{{c.name}}</option>
+          >{{ c.name }}</option>
         </select>
       </div>
       <div class="form-group"
@@ -31,7 +34,7 @@
           name="name"
           #name="ngModel"
           required
-          ngModel
+          [ngModel]="currentCategory.name"
         >
         <span *ngIf="name.invalid&&name.touched" class="form-help-text">Not empty</span>
       </div>
@@ -47,14 +50,14 @@
           name="capacity"
           #capacity="ngModel"
           required
-          ngModel
+          [ngModel]="currentCategory.capacity"
         >
         <span *ngIf="capacity.invalid&&capacity.touched" class="form-help-text">Not empty</span>
       </div>
       <button
         type="submit"
         class="btn btn-primary"
-        disabled="f.invalid"
+        [disabled]="f.invalid"
       >Добавить</button>
     </form>
   </div>

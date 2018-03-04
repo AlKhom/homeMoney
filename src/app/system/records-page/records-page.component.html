@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <ha-edit-category [categories]="categories"></ha-edit-category>
+        <ha-edit-category [categories]="categories" (categoryEdited)="categoryWasEdited($event)"></ha-edit-category>
     </div>
     </div>
   </section>
