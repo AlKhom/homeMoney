@@ -5,6 +5,11 @@
     </div>
   </div>
   <div class="card-block">
+    <div class="alert alert-{{message.type}}"
+    *ngIf="message.text"
+    >
+     {{message.text}}
+    </div>
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label class="control-label" for="category">Выберите категорию</label>
@@ -19,7 +24,7 @@
           <option
             *ngFor="let c of categories"
             [value]="c.id"
-          >{{c.name}}
+          >{{ c.name }}
           </option>
 
         </select>
@@ -36,7 +41,7 @@
               required
               [ngModel]="'outcome'"
             >
-            <span>{{t.label}}</span>
+            <span>{{ t.label }}</span>
           </label>
         </div>
       </div>

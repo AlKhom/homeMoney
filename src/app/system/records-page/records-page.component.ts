@@ -30,7 +30,7 @@ export class RecordsPageComponent implements OnInit {
 
   categoryWasEdited(category: CategoryModel) {
     const ind = this.categories.findIndex(
-      c => c.id === c.id
+      c => c.id === category.id
     );
     this.categories[ind] = category;
   }
